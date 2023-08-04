@@ -6,6 +6,7 @@ import {
   verify as jwtVerify,
   VerifyOptions,
 } from 'jsonwebtoken';
+import { createHmac } from 'crypto';
 import { EnvironmentSymbol, Environment } from '$infrastructure/config';
 import { resolveDependency } from '$infrastructure/di';
 
@@ -21,4 +22,8 @@ export const AuthToken = {
   },
 
   decode: (token: string) => jwtDecode(token) as JwtPayload | null,
+
+  createHmac: (secret: string, content: string) => {
+    return createHmac('sha256', secret).update(content).digest('hex');
+  },
 };

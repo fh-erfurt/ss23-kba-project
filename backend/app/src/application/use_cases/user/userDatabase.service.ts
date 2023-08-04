@@ -38,4 +38,8 @@ export const UserDatabaseService: UserServiceFactory = ({ db }) => ({
 
     return db.user.update({ where: { id }, data: { tokens } });
   },
+
+  incrementHmacCounter: async (id) => {
+    return db.user.update({ where: { id }, data: { hmacCounter: { increment: 1 } } });
+  },
 });
