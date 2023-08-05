@@ -104,6 +104,7 @@ package "Microservices" {
 
     database "Database3"{
       [Fehlerbericht anzeigen] <-- Database3 : Datenfluss
+      [Fehlerbericht an externe Systemtechniker senden] <-- Database3 : Datenfluss
       [Fehlerbericht verwalten] <-> Database3 : Datenfluss
     }
   }
