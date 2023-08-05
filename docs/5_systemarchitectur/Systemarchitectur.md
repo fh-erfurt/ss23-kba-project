@@ -78,44 +78,64 @@ Insgesamt bieten Microservices somit ein hohes Maß an Flexibilität, Skalierbar
 
 package "Microservices" {
   node "Backlog" {
-    [Auftrag bearbeiten] - HTTP1
-    [Auftrag ansehen] - HTTP1
+    [Auftrag bearbeiten]
+    [Auftrag ansehen]
 
     database "Database1"{
+      [Auftrag ansehen] <-- Database1 : Datenfluss
+      [Auftrag bearbeiten] <-> Database1: Datenfluss
     }
-      HTTP1 --> Database1 : Datenfluss
   }
 
   node "Medizinische_Geräte" {
-    [Untersuchungsergebnisse anzeigen] - HTTP2
-    [Untersuchungseinstellungen verwalten] - HTTP2
+    [Untersuchungsergebnisse anzeigen]
+    [Untersuchungseinstellungen verwalten]
+
     database "Database2"{
-      HTTP2 --> Database2 : Datenfluss
+      [Untersuchungsergebnisse anzeigen] <-- Database2 : Datenfluss
+      [Untersuchungseinstellungen verwalten] <-> Database2 : Datenfluss
     }
   }
 
   node "Fehlerbericht"{
-    [Fehlerbericht anzeigen] - HTTP3
-    [Fehlerbericht an externe Systemtechniker senden] - HTTP3
+    [Fehlerbericht verwalten]
+    [Fehlerbericht anzeigen]
+    [Fehlerbericht an externe Systemtechniker senden]
+
     database "Database3"{
-      HTTP3 --> Database3 : Datenfluss
+      [Fehlerbericht anzeigen] <-- Database3 : Datenfluss
+      [Fehlerbericht verwalten] <-> Database3 : Datenfluss
     }
   }
 
+  cloud "API-Gateway"
 
+  package "API"{
+    [Input(medizinisches Gerät)]
+    [Output(medizinisches Gerät)]
+    [Output(Fehlerbericht)]
+    [Input(Fehlerbericht)]
+    [Output(Laborergebnis)]
+    [Input(Backlogauftrag)]
+  }
 }
 
 
-Medizinisches_Gerät <-up- Database2 : Datenfluss
-Medizinisches_Gerät <-up- Database3 : Datenfluss
+[Untersuchungsergebnisse anzeigen] -down- "API-Gateway"
+[Untersuchungseinstellungen verwalten] -down- "API-Gateway"
+[Fehlerbericht anzeigen] -down- "API-Gateway"
+[Fehlerbericht an externe Systemtechniker senden] -down- "API-Gateway"
+[Auftrag bearbeiten] -down- "API-Gateway"
+[Auftrag ansehen] -down- "API-Gateway"
 
-package "API"{
-  [Sinnvolle API-Namen ausdenken?]
-}
+"API-Gateway" -- [Input(medizinisches Gerät)]
+"API-Gateway" -- [Output(medizinisches Gerät)]
+"API-Gateway" -- [Output(Fehlerbericht)]
+"API-Gateway" -- [Input(Fehlerbericht)]
+"API-Gateway" -- [Output(Laborergebnis)]
+"API-Gateway" -- [Input(Backlogauftrag)]
 
-Backlog -left- API
-Medizinische_Geräte -left- API
-Fehlerbericht -left- API
+
 
 @enduml
 ```
