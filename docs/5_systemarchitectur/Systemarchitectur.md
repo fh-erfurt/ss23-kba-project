@@ -383,5 +383,215 @@ package "API"{
 
 **Gesamte Architektur**
 ```plantuml Microservices
+@startuml
 
+package "Microservices" {
+
+'-----------Lino-----------
+  node "Backlog" {
+    [Auftrag bearbeiten]
+    [Auftrag ansehen]
+
+    database "Database1"{
+      [Auftrag ansehen] <-- Database1 : Datenfluss
+      [Auftrag bearbeiten] <-> Database1: Datenfluss
+    }
+  }
+
+  node "Medizinische_Geräte" {
+    [Untersuchungsergebnisse anzeigen]
+    [Untersuchungseinstellungen verwalten]
+
+    database "Database2"{
+      [Untersuchungsergebnisse anzeigen] <-- Database2 : Datenfluss
+      [Untersuchungseinstellungen verwalten] <-> Database2 : Datenfluss
+    }
+  }
+
+  node "Fehlerbericht"{
+    [Fehlerbericht verwalten]
+    [Fehlerbericht anzeigen]
+    [Fehlerbericht an externe Systemtechniker senden]
+
+    database "Database3"{
+      [Fehlerbericht anzeigen] <-- Database3 : Datenfluss
+      [Fehlerbericht an externe Systemtechniker senden] <-- Database3 : Datenfluss
+      [Fehlerbericht verwalten] <-> Database3 : Datenfluss
+    }
+  }
+
+'-----------Helen-----------
+   node "Zugriffsmöglichkeiten_eingeschränkt" {
+    [Termine als erledigt markieren]
+    [Termine einsehen]
+    database "Database4"{
+      [Termine einsehen] <-- Database4 : Datenfluss
+      [Termine als erledigt markieren] <--> Database4 : Datenfluss
+    }
+  }
+
+  node "Zugriffsmöglichkeiten_erweitert"{
+    [Patiententermine in Transportpläne eintragen]
+    [Patiententermine bearbeiten/löschen]
+    database "Database5"{
+      [Patiententermine in Transportpläne eintragen] --> Database5 : Datenfluss
+      [Patiententermine bearbeiten/löschen] <--> Database5 : Datenfluss
+    }
+  }
+
+'-----------Antonia-----------
+  node "Patienten" {
+    [Patientendaten anzeigen]
+    [Patientendaten verwalten]
+
+    database "Database6"{
+      [Patientendaten anzeigen] <-- Database6 : Datenfluss
+      [Patientendaten verwalten] <-> Database6 : Datenfluss
+    }
+  }
+
+'-----------Duong-----------
+node "Abteilungsanalyse" {
+    [Abteilungsanalysenbericht anzeigen] 
+    [Abteilungsanalysbenricht erstellen] 
+    [Abteilungsanalysenbericht versenden] 
+   
+    database "Database7"{
+      [Abteilungsanalysenbericht anzeigen] <-- Database7 : Datenfluss
+      [Abteilungsanalysbenricht erstellen] --> Database7 : Datenfluss
+      [Abteilungsanalysenbericht versenden] <-- Database7 : Datenfluss
+    }
+  }
+
+ node "Datenanfrage Krankenkasse"{
+    [Patientenakteanforderung empfangen] 
+    [Patientenakteanforderung versenden]
+    [Patientendaten suchen]
+    [Patientendaten verwalten]
+
+    database "Database8"{
+      [Patientendaten verwalten] <-> Database8 : Datenfluss
+      [Patientendaten suchen] --> Database8 : Datenfluss
+      [Patientenakteanforderung versenden] <-- Database8 : Datenfluss
+    }
+  }
+   node "Leistungsüberprüfung" {
+    [Leistungsanalyse anzeigen] 
+    [Leistungsbericht erstellen] 
+    [Leistungsbericht versenden] 
+
+    database "Database9"{
+      [Leistungsbericht erstellen] --> Database9 : Datenfluss
+      [Leistungsanalyse anzeigen] <-- Database9 : Datenfluss
+      [Leistungsbericht versenden] <-- Database9 : Datenfluss
+    }
+  }
+
+   node "Auslastungsanalyse"{
+    [Auslastungsüberblick anzeigen] 
+    [Auslastungsbericht erstellen] 
+    [Auslastungsbericht versenden] 
+    [Bett-Kapazität anzeigen] 
+
+    database "Database10"{
+      [Auslastungsüberblick anzeigen] <-- Database10 : Datenfluss 
+      [Auslastungsbericht erstellen] --> Database10 : Datenfluss
+      [Bett-Kapazität anzeigen] <-- Database10 : Datenfluss
+      [Auslastungsbericht versenden] <-- Database10 : Datenfluss
+    }
+  }
+
+
+  cloud "API-Gateway"
+
+  package "API"{
+'-----------Lino-----------
+    [Input(medizinisches Gerät)]
+    [Output(medizinisches Gerät)]
+    [Output(Fehlerbericht)]
+    [Input(Fehlerbericht)]
+    [Output(Laborergebnis)]
+    [Input(Backlogauftrag)]
+
+'-----------Helen-----------
+    [Input(Patiententermine in Transportpläne)]
+    [Output(Patiententermine in Transportpläne)]
+    [Input(Termine)]
+    [Output(Termine)]
+
+'-----------Antonia-----------
+    [Input(Patientendaten)]
+    [Output(Patientendaten)]
+
+'-----------Duong-----------
+  [Input (Abteilungsanalysendaten)]
+  [Output (Abteilungsanalysenbericht)]
+  [Input (Patientenakte)]
+  [Output (Patientenakten)]   
+  [Input (Leistungsdaten)]
+  [Output (Leistungsbericht)]
+  [Input (Auslastungsdaten)]
+  [Output (Auslastungsbericht)] 
+
+  }
+}
+
+'-----------Lino-----------
+[Untersuchungsergebnisse anzeigen] -down- "API-Gateway"
+[Untersuchungseinstellungen verwalten] -down- "API-Gateway"
+[Fehlerbericht anzeigen] -down- "API-Gateway"
+[Fehlerbericht verwalten] -down- "API-Gateway"
+[Fehlerbericht an externe Systemtechniker senden] -down- "API-Gateway"
+[Auftrag bearbeiten] -down- "API-Gateway"
+[Auftrag ansehen] -down- "API-Gateway"
+
+"API-Gateway" -- [Input(medizinisches Gerät)]
+"API-Gateway" -- [Output(medizinisches Gerät)]
+"API-Gateway" -- [Output(Fehlerbericht)]
+"API-Gateway" -- [Input(Fehlerbericht)]
+"API-Gateway" -- [Output(Laborergebnis)]
+"API-Gateway" -- [Input(Backlogauftrag)]
+
+'-----------Helen-----------
+[Termine einsehen] -down- "API-Gateway"
+[Termine als erledigt markieren] -down- "API-Gateway"
+[Patiententermine in Transportpläne eintragen] -down- "API-Gateway"
+[Patiententermine bearbeiten/löschen] -down- "API-Gateway"
+
+"API-Gateway" -- [Input(Patiententermine in Transportpläne)]
+"API-Gateway" -- [Input(Termine)]
+"API-Gateway" -- [Output(Termine)]
+"API-Gateway" -- [Output(Patiententermine in Transportpläne)]
+
+'-----------Antonia-----------
+[Patientendaten anzeigen] -down- "API-Gateway"
+[Patientendaten verwalten] -down- "API-Gateway"
+
+"API-Gateway" -- [Input(Patientendaten)]
+"API-Gateway" -- [Output(Patientendaten)]
+
+'-----------Duong-----------
+[Abteilungsanalysbenricht erstellen] -down- "API-Gateway"
+[Abteilungsanalysenbericht anzeigen] -down- "API-Gateway"
+[Abteilungsanalysenbericht versenden] -down- "API-Gateway"
+[Patientenakteanforderung empfangen] -down- "API-Gateway"
+[Patientenakteanforderung versenden] -down- "API-Gateway"
+[Leistungsbericht erstellen] -down- "API-Gateway"
+[Leistungsanalyse anzeigen] -down- "API-Gateway"
+[Leistungsbericht versenden] -down- "API-Gateway"
+[Bett-Kapazität anzeigen] -down- "API-Gateway"
+[Auslastungsbericht erstellen] -down- "API-Gateway"
+[Auslastungsüberblick anzeigen] -down- "API-Gateway"
+[Auslastungsbericht versenden] -down- "API-Gateway"
+
+"API-Gateway" -- [Input (Abteilungsanalysendaten)]
+"API-Gateway" -- [Output (Abteilungsanalysenbericht)]
+"API-Gateway" -- [Input (Patientenakte)]
+"API-Gateway" -- [Output (Patientenakten)]
+"API-Gateway" -- [Input (Leistungsdaten)]
+"API-Gateway" -- [Output (Leistungsbericht)]
+"API-Gateway" -- [Input (Auslastungsdaten)]
+"API-Gateway" -- [Output (Auslastungsbericht)]
+
+@enduml
 ```
