@@ -44,10 +44,10 @@ Externe Dienstleister welche für die Installation, Wartung und den Support für
 Zusätzliche (Patienten) Dokumente sind angehängte Dateien wie zB. Röntgenbilder, Blutbilder, ect., die zusätzlich zu den Patientendaten hinzugefügt werden.
 
 **Backlog**
--- Lino Update --
+Im Backlog befinden sich in Auftrag gegebene Laboruntersuchungen wie zum Beispiel Gewebeuntersuchungen oder Blutuntersuchungen. Diese Aufträge werden von Ärzten aufgegeben und durch das System im Backlog aufgenommen. Das Laborpersonal arbeitet diese Aufträge der Reihe/Priorität nach ab. Sollte der Auftrag von einem externen Azrt kommen, so wird das Ergebnis elektronisch versendet. Handelt es sich um den Auftrag eines internen Arztes, so wird das Ergebnis der Akte des Patienten beigelegt.
 
 **Konfiguration (Medizinische Geräte)**
--- Lino Update --
+Die Konfiguration von medizinischen Geräten wird vom zuständigen internen Technikerpersonal vorgenommen. Die Einstellungen werden an die jeweilig vorzunehmende Untersuchung angepasst. Sollte es bei dem Einstellen der Konfigurationseinstellungen einen Fehler geben, so gibt das Gerät einen Fehlerbericht aus.
 
 **Konfiguration (Administrator:innen)**
 Konfigurationen entsprechend den Unternehmensrichtlinien, den technischen Anforderungen und den Best Practices zu verwalten. Dies beinhaltet Aufgaben wie das Festlegen und Ändern von Konfigurationsoptionen, das Überprüfen und Aktualisieren von Konfigurationsdateien, das Durchführen von Tests und Validierungen, das Beheben von Konfigurationsfehlern und das Erstellen von Backups.
