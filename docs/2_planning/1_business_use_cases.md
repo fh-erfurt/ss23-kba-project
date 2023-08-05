@@ -96,7 +96,7 @@ patient --> UC2
 ```plantuml BUC Geraetehersteller
 @startuml
 left to right direction
-actor Externer_Systemtechniker as es
+actor "Externer_Systemtechniker:innen" as es
 package Gerätehersteller {
   usecase "Gemeldeter Fehlerbericht verwalten" as UC1
 }
@@ -110,7 +110,7 @@ es --> UC1
 ```plantuml BUC Geraetehersteller
 @startuml
 left to right direction
-actor Interner_Systemtechniker as is
+actor "Interner Systemtechniker:innen" as is
 package Medizinisches_Gerät {
   usecase "Medizinisches Gerät verwalten" as UC1
 }
@@ -124,7 +124,7 @@ is --> UC1
 ```plantuml BUC Backlog
 @startuml
 left to right direction
-actor Laborpersonal as lb
+actor "Laborpersonal" as lb
 package Backlog {
   usecase "Backlog verwalten" as UC1
 }
@@ -137,7 +137,7 @@ lb --> UC1
 ```plantuml
 @startuml
 left to right direction
-actor Geschäftsführer
+actor "Geschäftsführer"
 rectangle "Geschäftsführer:innen" {
   (Überwachung der Krankenhausleistung) as UC1
   (Listen aller Leistungen verwalten) as UC2
@@ -152,7 +152,7 @@ rectangle "Geschäftsführer:innen" {
 }
 
 Geschäftsführer -- UC1
-Geschäftsführer --UC2
+Geschäftsführer -- UC2
 @enduml
 ```
 
@@ -160,7 +160,7 @@ Geschäftsführer --UC2
 ```plantuml
 @startuml
 left to right direction
-actor Sekretäre
+actor "Sekretäre" as se
 
 rectangle "Sekretäre" {
   (Formulare/Berichte einreichen) as UC1
@@ -172,8 +172,8 @@ rectangle "Sekretäre" {
   UC2 -- UC4 : <<include>>
 }
 
-Sekretäre -- UC1
-Sekretäre -- UC2
+se -- UC1
+se -- UC2
 @enduml
 ```
 
