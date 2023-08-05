@@ -538,13 +538,13 @@ node "Abteilungsanalyse" {
 }
 
 '-----------Lino-----------
-[Untersuchungsergebnisse anzeigen] -down- "API-Gateway"
-[Untersuchungseinstellungen verwalten] -down- "API-Gateway"
-[Fehlerbericht anzeigen] -down- "API-Gateway"
-[Fehlerbericht verwalten] -down- "API-Gateway"
-[Fehlerbericht an externe Systemtechniker senden] -down- "API-Gateway"
-[Auftrag bearbeiten] -down- "API-Gateway"
-[Auftrag ansehen] -down- "API-Gateway"
+[Untersuchungsergebnisse anzeigen] -up- "API-Gateway"
+[Untersuchungseinstellungen verwalten] -up- "API-Gateway"
+[Fehlerbericht anzeigen] -up- "API-Gateway"
+[Fehlerbericht verwalten] -up- "API-Gateway"
+[Fehlerbericht an externe Systemtechniker senden] -up- "API-Gateway"
+[Auftrag bearbeiten] -up- "API-Gateway"
+[Auftrag ansehen] -up- "API-Gateway"
 
 "API-Gateway" -- [Input(medizinisches Gerät)]
 "API-Gateway" -- [Output(medizinisches Gerät)]
@@ -554,10 +554,10 @@ node "Abteilungsanalyse" {
 "API-Gateway" -- [Input(Backlogauftrag)]
 
 '-----------Helen-----------
-[Termine einsehen] -down- "API-Gateway"
-[Termine als erledigt markieren] -down- "API-Gateway"
-[Patiententermine in Transportpläne eintragen] -down- "API-Gateway"
-[Patiententermine bearbeiten/löschen] -down- "API-Gateway"
+[Termine einsehen] -up- "API-Gateway"
+[Termine als erledigt markieren] -up- "API-Gateway"
+[Patiententermine in Transportpläne eintragen] -up- "API-Gateway"
+[Patiententermine bearbeiten/löschen] -up- "API-Gateway"
 
 "API-Gateway" -- [Input(Patiententermine in Transportpläne)]
 "API-Gateway" -- [Input(Termine)]
@@ -565,25 +565,25 @@ node "Abteilungsanalyse" {
 "API-Gateway" -- [Output(Patiententermine in Transportpläne)]
 
 '-----------Antonia-----------
-[Patientendaten anzeigen] -down- "API-Gateway"
-[Patientendaten verwalten] -down- "API-Gateway"
+[Patientendaten anzeigen] -up- "API-Gateway"
+[Patientendaten verwalten] -up- "API-Gateway"
 
 "API-Gateway" -- [Input(Patientendaten)]
 "API-Gateway" -- [Output(Patientendaten)]
 
 '-----------Duong-----------
-[Abteilungsanalysbenricht erstellen] -down- "API-Gateway"
-[Abteilungsanalysenbericht anzeigen] -down- "API-Gateway"
-[Abteilungsanalysenbericht versenden] -down- "API-Gateway"
-[Patientenakteanforderung empfangen] -down- "API-Gateway"
-[Patientenakteanforderung versenden] -down- "API-Gateway"
-[Leistungsbericht erstellen] -down- "API-Gateway"
-[Leistungsanalyse anzeigen] -down- "API-Gateway"
-[Leistungsbericht versenden] -down- "API-Gateway"
-[Bett-Kapazität anzeigen] -down- "API-Gateway"
-[Auslastungsbericht erstellen] -down- "API-Gateway"
-[Auslastungsüberblick anzeigen] -down- "API-Gateway"
-[Auslastungsbericht versenden] -down- "API-Gateway"
+[Abteilungsanalysbenricht erstellen] -up- "API-Gateway"
+[Abteilungsanalysenbericht anzeigen] -up- "API-Gateway"
+[Abteilungsanalysenbericht versenden] -up- "API-Gateway"
+[Patientenakteanforderung empfangen] -up- "API-Gateway"
+[Patientenakteanforderung versenden] -up- "API-Gateway"
+[Leistungsbericht erstellen] -up- "API-Gateway"
+[Leistungsanalyse anzeigen] -up- "API-Gateway"
+[Leistungsbericht versenden] -up- "API-Gateway"
+[Bett-Kapazität anzeigen] -up- "API-Gateway"
+[Auslastungsbericht erstellen] -up- "API-Gateway"
+[Auslastungsüberblick anzeigen] -up- "API-Gateway"
+[Auslastungsbericht versenden] -up- "API-Gateway"
 
 "API-Gateway" -- [Input (Abteilungsanalysendaten)]
 "API-Gateway" -- [Output (Abteilungsanalysenbericht)]
