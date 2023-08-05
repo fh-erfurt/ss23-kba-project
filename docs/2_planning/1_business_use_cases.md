@@ -110,7 +110,7 @@ es --> UC1
 ```plantuml BUC Geraetehersteller
 @startuml
 left to right direction
-actor Interner_Systemtechniker:innen as is
+actor Interner_Systemtechniker as is
 package Medizinisches_Gerät {
   usecase "Medizinisches Gerät verwalten" as UC1
 }
