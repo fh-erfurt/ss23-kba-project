@@ -194,28 +194,45 @@ Dokumentationsverwaltung - API
 ```plantuml Microservices
 
 @startuml
-package "Patiententransportdienst" {
+package "Microservices" {
 
    node "Zugriffsmöglichkeiten_eingeschränkt" {
-    [Termine als erledigt markieren] - HTTP1
-    [Termine einsehen] - HTTP1
+    [Termine als erledigt markieren]
+    [Termine einsehen]
     database "Database1"{
-      HTTP1 --> Database1 : Datenfluss
+      [Termine einsehen] <-- Database1 : Datenfluss
+      [Termine als erledigt markieren] <--> Database1 : Datenfluss
     }
   }
 
   node "Zugriffsmöglichkeiten_erweitert"{
-    [Patiententermine in Transportpläne eintragen] - HTTP2
-    [Patiententermine bearbeiten/löschen] - HTTP2
+    [Patiententermine in Transportpläne eintragen]
+    [Patiententermine bearbeiten/löschen]
     database "Database2"{
-      HTTP2 --> Database2 : Datenfluss
+      [Patiententermine in Transportpläne eintragen] --> Database2 : Datenfluss
+      [Patiententermine bearbeiten/löschen] <--> Database2 : Datenfluss
     }
+  }
+
+cloud "API-Gateway"
+
+  package "API"{
+    [Input(Patiententermine in Transportpläne)]
+    [Output(Patiententermine in Transportpläne)]
+    [Input(Termine)]
+    [Output(Termine)]
   }
 }
 
+[Termine einsehen] -down- "API-Gateway"
+[Termine als erledigt markieren] -down- "API-Gateway"
+[Patiententermine in Transportpläne eintragen] -down- "API-Gateway"
+[Patiententermine bearbeiten/löschen] -down- "API-Gateway"
 
-Patiententransportplan <-up- Database1 : Datenfluss
-Patiententransportplan <-up- Database2 : Datenfluss
+"API-Gateway" -- [Input(Patiententermine in Transportpläne)]
+"API-Gateway" -- [Input(Termine)]
+"API-Gateway" -- [Output(Termine)]
+"API-Gateway" -- [Output(Patiententermine in Transportpläne)]
 
 @enduml
 ```
