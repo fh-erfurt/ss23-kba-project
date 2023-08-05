@@ -216,3 +216,36 @@ Patiententransportplan <-up- Database2 : Datenfluss
 
 @enduml
 ```
+
+**Patienten - Antonia Geschke**
+```plantuml Microservices - Antonia Geschke
+@startuml
+package "Microservices" {
+
+  node "Patienten" {
+    [Patientendaten anzeigen]
+    [Patientendaten verwalten]
+
+    database "Database4"{
+      [Patientendaten anzeigen] <-- Database4 : Datenfluss
+      [Patientendaten verwalten] <-> Database4 : Datenfluss
+    }
+  }
+
+
+  cloud "API-Gateway"
+
+  package "API"{
+    [Input(Patientendaten)]
+    [Output(Patientendaten)]
+  }
+}
+
+
+[Patientendaten anzeigen] -down- "API-Gateway"
+[Patientendaten verwalten] -down- "API-Gateway"
+
+"API-Gateway" -- [Input(Patientendaten)]
+"API-Gateway" -- [Output(Patientendaten)]
+@enduml
+```
