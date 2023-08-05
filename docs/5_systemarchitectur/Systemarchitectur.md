@@ -141,7 +141,8 @@ package "Microservices" {
 @enduml
 ```
 
-```plantuml Microservices - Jann Lucas Pischke
+**INHALT - Jann Lucas Pischke**
+```plantuml Microservices
 @startuml
 
 package "Microservices" {
@@ -188,8 +189,8 @@ Dokumentationsverwaltung - API
 @enduml
 ```
 
-```
-Patiententransportdienst - Helen Laible
+**Patiententransportdienst - Helen Laible**
+```plantuml Microservices
 
 @startuml
 package "Patiententransportdienst" {
