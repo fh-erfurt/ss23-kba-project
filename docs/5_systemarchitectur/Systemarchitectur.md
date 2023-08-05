@@ -380,3 +380,8 @@ package "API"{
   "API-Gateway" -- [Output (Auslastungsbericht)]
 @enduml
 ```
+
+**Gesamte Architektur**
+```plantuml Microservices
+
+```
