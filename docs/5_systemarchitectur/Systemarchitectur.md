@@ -125,6 +125,7 @@ package "Microservices" {
 [Untersuchungsergebnisse anzeigen] -down- "API-Gateway"
 [Untersuchungseinstellungen verwalten] -down- "API-Gateway"
 [Fehlerbericht anzeigen] -down- "API-Gateway"
+[Fehlerbericht verwalten] -down- "API-Gateway"
 [Fehlerbericht an externe Systemtechniker senden] -down- "API-Gateway"
 [Auftrag bearbeiten] -down- "API-Gateway"
 [Auftrag ansehen] -down- "API-Gateway"
