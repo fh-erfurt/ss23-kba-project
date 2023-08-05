@@ -251,3 +251,114 @@ package "Microservices" {
 "API-Gateway" -- [Output(Patientendaten)]
 @enduml
 ```
+
+**Abteilungsanalyse, Datenanfrage Krankenkasse - Duc Duong Nguyen**
+
+```plantuml Microservices 
+@startuml
+package "Microservices" {
+
+node "Abteilungsanalyse" {
+    [Abteilungsanalysenbericht anzeigen] 
+    [Abteilungsanalysbenricht erstellen] 
+    [Abteilungsanalysenbericht versenden] 
+   
+    database "Database1"{
+      [Abteilungsanalysenbericht anzeigen] <-- Database1 : Datenfluss
+      [Abteilungsanalysbenricht erstellen] --> Database1 : Datenfluss
+      [Abteilungsanalysenbericht versenden] <-- Database1 : Datenfluss
+    }
+  }
+
+ node "Datenanfrage Krankenkasse"{
+    [Patientenakteanforderung empfangen] 
+    [Patientenakteanforderung versenden]
+    [Patientendaten suchen]
+    [Patientendaten verwalten]
+
+    database "Database2"{
+      [Patientendaten verwalten] <-> Database2 : Datenfluss
+      [Patientendaten suchen] --> Database2 : Datenfluss
+      [Patientenakteanforderung versenden] <-- Database2 : Datenfluss
+    }
+  }
+
+  cloud "API-Gateway"
+
+package "API"{
+  [Input (Abteilungsanalysendaten)]
+  [Output (Abteilungsanalysenbericht)]
+  [Input (Patientenakte)]
+  [Output (Patientenakten)]
+ }
+}
+
+  [Abteilungsanalysbenricht erstellen] -down- "API-Gateway"
+  [Abteilungsanalysenbericht anzeigen] -down- "API-Gateway"
+  [Abteilungsanalysenbericht versenden] -down- "API-Gateway"
+  [Patientenakteanforderung empfangen] -down- "API-Gateway"
+  [Patientenakteanforderung versenden] -down- "API-Gateway"
+
+  "API-Gateway" -- [Input (Abteilungsanalysendaten)]
+  "API-Gateway" -- [Output (Abteilungsanalysenbericht)]
+  "API-Gateway" -- [Input (Patientenakte)]
+  "API-Gateway" -- [Output (Patientenakten)]
+@enduml
+```
+
+**Leistungsüberprüfung, Auslastungsanalyse - Duc Duong Nguyen**
+
+```plantuml Microservices 
+@startuml
+package "Microservices" {
+
+   node "Leistungsüberprüfung" {
+    [Leistungsanalyse anzeigen] 
+    [Leistungsbericht erstellen] 
+    [Leistungsbericht versenden] 
+
+    database "Database1"{
+      [Leistungsbericht erstellen] --> Database1 : Datenfluss
+      [Leistungsanalyse anzeigen] <-- Database1 : Datenfluss
+      [Leistungsbericht versenden] <-- Database1 : Datenfluss
+    }
+  }
+
+   node "Auslastungsanalyse"{
+    [Auslastungsüberblick anzeigen] 
+    [Auslastungsbericht erstellen] 
+    [Auslastungsbericht versenden] 
+    [Bett-Kapazität anzeigen] 
+
+    database "Database2"{
+      [Auslastungsüberblick anzeigen] <-- Database2 : Datenfluss 
+      [Auslastungsbericht erstellen] --> Database2 : Datenfluss
+      [Bett-Kapazität anzeigen] <-- Database2 : Datenfluss
+      [Auslastungsbericht versenden] <-- Database2 : Datenfluss
+    }
+  }
+
+
+  cloud "API-Gateway"
+
+package "API"{
+  [Input (Leistungsdaten)]
+  [Output (Leistungsbericht)]
+  [Input (Auslastungsdaten)]
+  [Output (Auslastungsbericht)]
+ }
+}
+  [Leistungsbericht erstellen] -down- "API-Gateway"
+  [Leistungsanalyse anzeigen] -down- "API-Gateway"
+  [Leistungsbericht versenden] -down- "API-Gateway"
+  [Bett-Kapazität anzeigen] -down- "API-Gateway"
+  [Auslastungsbericht erstellen] -down- "API-Gateway"
+  [Auslastungsüberblick anzeigen] -down- "API-Gateway"
+  [Auslastungsbericht versenden] -down- "API-Gateway"
+
+  "API-Gateway" -- [Input (Leistungsdaten)]
+  "API-Gateway" -- [Output (Leistungsbericht)]
+  "API-Gateway" -- [Input (Auslastungsdaten)]
+  "API-Gateway" -- [Output (Auslastungsbericht)]
+@enduml
+```
