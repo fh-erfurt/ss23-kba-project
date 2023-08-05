@@ -165,12 +165,13 @@ Konfigurationsdatenverwaltung - API
 Dokumentationsverwaltung - API
 
 @enduml
+```
 
+```
 Patiententransportdienst - Helen Laible
 
 @startuml
-
-package "Microservices" {
+package "Patiententransportdienst" {
 
    node "Zugriffsmöglichkeiten_eingeschränkt" {
     [Termine als erledigt markieren] - HTTP1
@@ -194,3 +195,4 @@ Patiententransportplan <-up- Database1 : Datenfluss
 Patiententransportplan <-up- Database2 : Datenfluss
 
 @enduml
+```
