@@ -87,7 +87,7 @@ package "Microservices" {
     }
   }
 
-  node "Medizinische_Geräte" {
+  node "Untersuchungen medizinisches Gerät" {
     [Untersuchungsergebnisse anzeigen]
     [Untersuchungseinstellungen verwalten]
 
@@ -414,7 +414,7 @@ package "Microservices" {
     }
   }
 
-  node "Medizinische Geräte" {
+  node "Untersuchungen medizinisches Gerät" {
     [Untersuchungsergebnisse anzeigen]
     [Untersuchungseinstellungen verwalten]
 
