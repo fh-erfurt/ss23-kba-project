@@ -408,9 +408,9 @@ package "Microservices" {
     [Auftrag bearbeiten]
     [Auftrag ansehen]
 
-    database "Database1"{
-      [Auftrag ansehen] <-- Database1 : Datenfluss
-      [Auftrag bearbeiten] <-> Database1: Datenfluss
+    database "Datenbank1"{
+      [Auftrag ansehen] <-- Datenbank1 : Datenfluss
+      [Auftrag bearbeiten] <-> Datenbank1: Datenfluss
     }
   }
 
@@ -418,51 +418,51 @@ package "Microservices" {
     [Untersuchungsergebnisse anzeigen]
     [Untersuchungseinstellungen verwalten]
 
-    database "Database2"{
-      [Untersuchungsergebnisse anzeigen] <-- Database2 : Datenfluss
-      [Untersuchungseinstellungen verwalten] <-> Database2 : Datenfluss
+    database "Datenbank2"{
+      [Untersuchungsergebnisse anzeigen] <-- Datenbank2 : Datenfluss
+      [Untersuchungseinstellungen verwalten] <-> Datenbank2 : Datenfluss
     }
   }
 
-  node "Fehlerbericht medizinisches Gerät"{
+  node "Fehlerbericht"{
     [Fehlerbericht verwalten]
     [Fehlerbericht anzeigen]
     [Fehlerbericht an externe Systemtechniker senden]
 
-    database "Database3"{
-      [Fehlerbericht anzeigen] <-- Database3 : Datenfluss
-      [Fehlerbericht an externe Systemtechniker senden] <-- Database3 : Datenfluss
-      [Fehlerbericht verwalten] <-> Database3 : Datenfluss
+    database "Datenbank3"{
+      [Fehlerbericht anzeigen] <-- Datenbank3 : Datenfluss
+      [Fehlerbericht an externe Systemtechniker senden] <-- Datenbank3 : Datenfluss
+      [Fehlerbericht verwalten] <-> Datenbank3 : Datenfluss
     }
   }
 
 '-----------Helen-----------
-   node "Zugriffsmöglichkeiten_eingeschränkt" {
+   node "Zugriffsmöglichkeiten eingeschränkt" {
     [Termine als erledigt markieren]
     [Termine einsehen]
-    database "Database4"{
-      [Termine einsehen] <-- Database4 : Datenfluss
-      [Termine als erledigt markieren] <--> Database4 : Datenfluss
+    database "Datenbank4"{
+      [Termine einsehen] <-- Datenbank4 : Datenfluss
+      [Termine als erledigt markieren] <--> Datenbank4 : Datenfluss
     }
   }
 
-  node "Zugriffsmöglichkeiten_erweitert"{
+  node "Zugriffsmöglichkeiten erweitert"{
     [Patiententermine in Transportpläne eintragen]
     [Patiententermine bearbeiten/löschen]
-    database "Database5"{
-      [Patiententermine in Transportpläne eintragen] --> Database5 : Datenfluss
-      [Patiententermine bearbeiten/löschen] <--> Database5 : Datenfluss
+    database "Datenbank5"{
+      [Patiententermine in Transportpläne eintragen] --> Datenbank5 : Datenfluss
+      [Patiententermine bearbeiten/löschen] <--> Datenbank5 : Datenfluss
     }
   }
 
 '-----------Antonia-----------
   node "Patienten" {
     [Patientendaten anzeigen]
-    [Patientendaten verwalten] as patienten_antonia
+    [Patientendaten verwalten]
 
-    database "Database6"{
-      [Patientendaten anzeigen] <-- Database6 : Datenfluss
-      patienten_antonia <-> Database6 : Datenfluss
+    database "Datenbank6"{
+      [Patientendaten anzeigen] <-- Datenbank6 : Datenfluss
+      [Patientendaten verwalten] <-> Datenbank6 : Datenfluss
     }
   }
 
@@ -472,23 +472,20 @@ node "Abteilungsanalyse" {
     [Abteilungsanalysbenricht erstellen] 
     [Abteilungsanalysenbericht versenden] 
    
-    database "Database7"{
-      [Abteilungsanalysenbericht anzeigen] <-- Database7 : Datenfluss
-      [Abteilungsanalysbenricht erstellen] --> Database7 : Datenfluss
-      [Abteilungsanalysenbericht versenden] <-- Database7 : Datenfluss
+    database "Datenbank7"{
+      [Abteilungsanalysenbericht anzeigen] <-- Datenbank7 : Datenfluss
+      [Abteilungsanalysbenricht erstellen] --> Datenbank7 : Datenfluss
+      [Abteilungsanalysenbericht versenden] <-- Datenbank7 : Datenfluss
     }
   }
 
  node "Datenanfrage Krankenkasse"{
     [Patientenakteanforderung empfangen] 
     [Patientenakteanforderung versenden]
-    [Patientendaten suchen]
-    [Patientendaten verwalten] as patienten_doung
 
-    database "Database8"{
-      patienten_doung <-> Database8 : Datenfluss
-      [Patientendaten suchen] --> Database8 : Datenfluss
-      [Patientenakteanforderung versenden] <-- Database8 : Datenfluss
+    database "Datenbank8"{
+      [Patientenakteanforderung versenden] <-- Datenbank8 : Datenfluss
+      [Patientenakteanforderung empfangen] --> Datenbank8 : Datenfluss
     }
   }
    node "Leistungsüberprüfung" {
@@ -496,10 +493,10 @@ node "Abteilungsanalyse" {
     [Leistungsbericht erstellen] 
     [Leistungsbericht versenden] 
 
-    database "Database9"{
-      [Leistungsbericht erstellen] --> Database9 : Datenfluss
-      [Leistungsanalyse anzeigen] <-- Database9 : Datenfluss
-      [Leistungsbericht versenden] <-- Database9 : Datenfluss
+    database "Datenbank9"{
+      [Leistungsbericht erstellen] --> Datenbank9 : Datenfluss
+      [Leistungsanalyse anzeigen] <-- Datenbank9 : Datenfluss
+      [Leistungsbericht versenden] <-- Datenbank9 : Datenfluss
     }
   }
 
@@ -509,11 +506,11 @@ node "Abteilungsanalyse" {
     [Auslastungsbericht versenden] 
     [Bett-Kapazität anzeigen] 
 
-    database "Database10"{
-      [Auslastungsüberblick anzeigen] <-- Database10 : Datenfluss 
-      [Auslastungsbericht erstellen] --> Database10 : Datenfluss
-      [Bett-Kapazität anzeigen] <-- Database10 : Datenfluss
-      [Auslastungsbericht versenden] <-- Database10 : Datenfluss
+    database "Datenbank10"{
+      [Auslastungsüberblick anzeigen] <-- Datenbank10 : Datenfluss 
+      [Auslastungsbericht erstellen] --> Datenbank10 : Datenfluss
+      [Bett-Kapazität anzeigen] <-- Datenbank10 : Datenfluss
+      [Auslastungsbericht versenden] <-- Datenbank10 : Datenfluss
     }
   }
 '-----------Jann-----------
@@ -524,7 +521,7 @@ node "Abteilungsanalyse" {
   }
   node "Benutzerverwaltung" {
     database "Datenbank12" as db12
-    [Konroverwaltung] <-down-> db12 : Datenfluss
+    [Kontoverwaltung] <-down-> db12 : Datenfluss
     [Passwortverwaltung] <-down-> db12 : Datenfluss
     [Richtlinienverwaltung] <-down-> db12 : Datenfluss
     [Rechteverwaltung] <-down-> db12 : Datenfluss
@@ -645,7 +642,7 @@ node "Abteilungsanalyse" {
 
 [Ressourcen überwachen]  -up- "API-Gateway" 
 [Benachrichtigungen senden] -up- "API-Gateway"
-[Konroverwaltung] -up- "API-Gateway"
+[Kontoverwaltung] -up- "API-Gateway"
 [Passwortverwaltung] -up- "API-Gateway"
 [Richtlinienverwaltung] -up- "API-Gateway"
 [Rechteverwaltung] -up- "API-Gateway"
@@ -660,6 +657,20 @@ node "Abteilungsanalyse" {
 "API-Gateway" -- [Output(Konfigurationsdatenverwaltung)]
 "API-Gateway" -- [Input(Dokumentationsverwaltung)]
 "API-Gateway" -- [Output(Dokumentationsverwaltung)]
+
+'----------------------
+"Patienten" <|.. Datenbank2
+
+"Datenanfrage Krankenkasse" <|.. Datenbank6
+
+"Auslastungsanalyse" <|.. Datenbank4
+"Auslastungsanalyse" <|.. Datenbank1
+
+"Systemüberwachung" <|.. Datenbank3
+
+"Leistungsüberprüfung" <|.. Datenbank10
+
+"Abteilungsanalyse" <|.. Datenbank10
 
 @enduml
 ```
