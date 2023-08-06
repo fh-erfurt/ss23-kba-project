@@ -147,45 +147,60 @@ package "Microservices" {
 @startuml
 
 package "Microservices" {
-node "Systemüberwachung" {
-  [Ressourcen überwachen] -right- HTTP1
-  [Benachrichtigungen versenden] -left- HTTP1
-  database "Database" as db1
-  HTTP1 -down- db1: Datenfluss
-}
-node "Benutzerverwaltung" {
-  [Konroverwaltung] -down- HTTP2
-  [Passwortverwaltung] -down- HTTP2
-  [Richtlinienverwaltung] - HTTP2
-  [Rechteverwaltung] -left- HTTP2
-  database "Datenbank" as db2
-  HTTP2 --> db2 : Datenfluss
-}
-node "Konfigurationsdatenverwaltung" {
-  [Konfigurationsdaten bearbeiten] -right- HTTP3
-  [Konfigurationsdaten einsehen] -left- HTTP3
-  database "Datenbank" as db3
-  HTTP3 --> db3 : Datenfluss
-}
-node "Dokumentationsverwaltung" {
-  [Dokumente bearbeiten] -right- HTTP4
-  [Dokumente einsehen] -left- HTTP4
-  database "Datenbank" as db4
-  HTTP4 --> db4 : Datenfluss
-}
+  node "Systemüberwachung" {
+    database "Database" as db1
+    [Ressourcen überwachen] <-down- db1 : Datenfluss
+    [Benachrichtigungen senden] <-down- db1 : Datenfluss
+  }
+  node "Benutzerverwaltung" {
+    database "Datenbank" as db2
+    [Konroverwaltung] <-down-> db2 : Datenfluss
+    [Passwortverwaltung] <-down-> db2 : Datenfluss
+    [Richtlinienverwaltung] <-down-> db2 : Datenfluss
+    [Rechteverwaltung] <-down-> db2 : Datenfluss
+  }
+  node "Konfigurationsdatenverwaltung" {
+    database "Datenbank" as db3
+    [Konfigurationsdaten bearbeiten] <-down-> db3 : Datenfluss
+    [Konfigurationsdaten einsehen] <-down- db3 : Datenfluss
+  }
+  node "Dokumentationsverwaltung" {
+    database "Datenbank" as db4
+    [Dokumente bearbeiten] <-down-> db4 : Datenfluss
+    [Dokumente einsehen]  <-down- db4 : Datenfluss
+  }
+  cloud "API-Gateway"
+
+  package "API" {
+    [Input(Systemüberwachung)]
+    [Output(Systemüberwachung)]
+    [Input(Benutzerverwaltung)]
+    [Output(Benutzerverwaltung)]
+    [Input(Konfigurationsdatenverwaltung)]
+    [Output(Konfigurationsdatenverwaltung)]
+    [Input(Dokumentationsverwaltung)]
+    [Output(Dokumentationsverwaltung)]
+  }
+
+  [Ressourcen überwachen]  -down- "API-Gateway" 
+  [Benachrichtigungen senden] -down- "API-Gateway"
+  [Konroverwaltung] -down- "API-Gateway"
+  [Passwortverwaltung] -down- "API-Gateway"
+  [Richtlinienverwaltung] -down- "API-Gateway"
+  [Rechteverwaltung] -down- "API-Gateway"
+  [Konfigurationsdaten bearbeiten] -down- "API-Gateway"
+  [Dokumente bearbeiten] -down- "API-Gateway"
+
+  "API-Gateway" -- [Input(Systemüberwachung)]
+  "API-Gateway" -- [Output(Systemüberwachung)]
+  "API-Gateway" -- [Input(Benutzerverwaltung)]
+  "API-Gateway" -- [Output(Benutzerverwaltung)]
+  "API-Gateway" -- [Input(Konfigurationsdatenverwaltung)]
+  "API-Gateway" -- [Output(Konfigurationsdatenverwaltung)]
+  "API-Gateway" -- [Input(Dokumentationsverwaltung)]
+  "API-Gateway" -- [Output(Dokumentationsverwaltung)]
 
 }
-
-Telmetrie_Module -up-> db1
-
-package "API" {
-  [API Name]
-}
-
-Systemüberwachung - API
-Benutzerverwaltung - API
-Konfigurationsdatenverwaltung - API
-Dokumentationsverwaltung - API
 
 @enduml
 ```
