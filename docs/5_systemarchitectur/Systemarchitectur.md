@@ -142,7 +142,7 @@ package "Microservices" {
 @enduml
 ```
 
-**INHALT - Jann Lucas Pischke**
+**Systemadministration - Jann Lucas Pischke**
 ```plantuml Microservices
 @startuml
 
@@ -516,6 +516,29 @@ node "Abteilungsanalyse" {
       [Auslastungsbericht versenden] <-- Database10 : Datenfluss
     }
   }
+'-----------Jann-----------
+  node "Systemüberwachung" {
+    database "Datenbank11" as db11
+    [Ressourcen überwachen] <-down- db11 : Datenfluss
+    [Benachrichtigungen senden] <-down- db11 : Datenfluss
+  }
+  node "Benutzerverwaltung" {
+    database "Datenbank12" as db12
+    [Konroverwaltung] <-down-> db12 : Datenfluss
+    [Passwortverwaltung] <-down-> db12 : Datenfluss
+    [Richtlinienverwaltung] <-down-> db12 : Datenfluss
+    [Rechteverwaltung] <-down-> db12 : Datenfluss
+  }
+  node "Konfigurationsdatenverwaltung" {
+    database "Datenbank13" as db13
+    [Konfigurationsdaten bearbeiten] <-down-> db13 : Datenfluss
+    [Konfigurationsdaten einsehen] <-down- db13 : Datenfluss
+  }
+  node "Dokumentationsverwaltung" {
+    database "Datenbank14" as db14
+    [Dokumente bearbeiten] <-down-> db14 : Datenfluss
+    [Dokumente einsehen]  <-down- db14 : Datenfluss
+  }
 
 
   cloud "API-Gateway"
@@ -547,8 +570,17 @@ node "Abteilungsanalyse" {
   [Input (Leistungsdaten)]
   [Output (Leistungsbericht)]
   [Input (Auslastungsdaten)]
-  [Output (Auslastungsbericht)] 
+  [Output (Auslastungsbericht)]
 
+  '-----------Jann-----------
+  [Input(Systemüberwachung)]
+  [Output(Systemüberwachung)]
+  [Input(Benutzerverwaltung)]
+  [Output(Benutzerverwaltung)]
+  [Input(Konfigurationsdatenverwaltung)]
+  [Output(Konfigurationsdatenverwaltung)]
+  [Input(Dokumentationsverwaltung)]
+  [Output(Dokumentationsverwaltung)]
   }
 }
 
@@ -608,6 +640,26 @@ node "Abteilungsanalyse" {
 "API-Gateway" -- [Output (Leistungsbericht)]
 "API-Gateway" -- [Input (Auslastungsdaten)]
 "API-Gateway" -- [Output (Auslastungsbericht)]
+
+'-----------Jann-----------
+
+[Ressourcen überwachen]  -up- "API-Gateway" 
+[Benachrichtigungen senden] -up- "API-Gateway"
+[Konroverwaltung] -up- "API-Gateway"
+[Passwortverwaltung] -up- "API-Gateway"
+[Richtlinienverwaltung] -up- "API-Gateway"
+[Rechteverwaltung] -up- "API-Gateway"
+[Konfigurationsdaten bearbeiten] -up- "API-Gateway"
+[Dokumente bearbeiten] -up- "API-Gateway"
+
+"API-Gateway" -- [Input(Systemüberwachung)]
+"API-Gateway" -- [Output(Systemüberwachung)]
+"API-Gateway" -- [Input(Benutzerverwaltung)]
+"API-Gateway" -- [Output(Benutzerverwaltung)]
+"API-Gateway" -- [Input(Konfigurationsdatenverwaltung)]
+"API-Gateway" -- [Output(Konfigurationsdatenverwaltung)]
+"API-Gateway" -- [Input(Dokumentationsverwaltung)]
+"API-Gateway" -- [Output(Dokumentationsverwaltung)]
 
 @enduml
 ```
