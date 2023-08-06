@@ -63,5 +63,9 @@
     ],
     "[prisma]": {
       "editor.defaultFormatter": "Prisma.prisma"
-    }
+    },
+    "cSpell.words": [
+      "Skalierbarkeitsprobleme",
+      "Überspringung"
+    ]
   }
