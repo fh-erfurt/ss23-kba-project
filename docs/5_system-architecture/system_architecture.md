@@ -97,7 +97,7 @@ package "Microservices" {
     }
   }
 
-  node "Fehlerbericht"{
+  node "Fehlerbericht medizinisches Gerät"{
     [Fehlerbericht verwalten]
     [Fehlerbericht anzeigen]
     [Fehlerbericht an externe Systemtechniker senden]
@@ -414,7 +414,7 @@ package "Microservices" {
     }
   }
 
-  node "Medizinische_Geräte" {
+  node "Medizinische Geräte" {
     [Untersuchungsergebnisse anzeigen]
     [Untersuchungseinstellungen verwalten]
 
@@ -424,7 +424,7 @@ package "Microservices" {
     }
   }
 
-  node "Fehlerbericht"{
+  node "Fehlerbericht medizinisches Gerät"{
     [Fehlerbericht verwalten]
     [Fehlerbericht anzeigen]
     [Fehlerbericht an externe Systemtechniker senden]
@@ -458,11 +458,11 @@ package "Microservices" {
 '-----------Antonia-----------
   node "Patienten" {
     [Patientendaten anzeigen]
-    [Patientendaten verwalten]
+    [Patientendaten verwalten] as patienten_antonia
 
     database "Database6"{
       [Patientendaten anzeigen] <-- Database6 : Datenfluss
-      [Patientendaten verwalten] <-> Database6 : Datenfluss
+      patienten_antonia <-> Database6 : Datenfluss
     }
   }
 
@@ -483,10 +483,10 @@ node "Abteilungsanalyse" {
     [Patientenakteanforderung empfangen] 
     [Patientenakteanforderung versenden]
     [Patientendaten suchen]
-    [Patientendaten verwalten]
+    [Patientendaten verwalten] as patienten_doung
 
     database "Database8"{
-      [Patientendaten verwalten] <-> Database8 : Datenfluss
+      patienten_doung <-> Database8 : Datenfluss
       [Patientendaten suchen] --> Database8 : Datenfluss
       [Patientenakteanforderung versenden] <-- Database8 : Datenfluss
     }
