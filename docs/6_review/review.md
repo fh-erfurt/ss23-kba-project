@@ -146,7 +146,10 @@ Aus dem Review kann ich folgende Empfehlungen und Vorschläge für das weitere V
 * Einhaltung einer Dokumentationsform (einige BUC beinhalten Kommentare andere wiederum nicht, eine SUC hat eine zusätzlich textuelle Beschreibung) 
 * Nummerierung der BUC, SUC und Aktivitätsdiagramme für eine bessere Nachvollziehbarkeit der Dokumentation
 * lesbare und sauberere Diagramme 
-* Neuentwicklung der ER-Modelle der Datenbank für die einzelnen Microservices Module. 
+* Neuentwicklung der ER-Modelle der Datenbank für die einzelnen Microservices Module
+* Kopplung Microservice-Module an den mehrere API-Gateways
+* sauberere und feinere Definition der Anbindung zwischen internen und externen Schnittstellen 
+* spezifische Diskussion über Verantwortungen der Rollen im Umsetzungsteam, Tech-Stack, Qualitätsmanagement, Software-Testing, Deployment und Infrastruktur für das Projekt 
 
 ## 10. Review-Zusammenfassung
 
