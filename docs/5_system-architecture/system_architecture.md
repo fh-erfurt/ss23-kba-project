@@ -154,7 +154,7 @@ package "Microservices" {
   }
   node "Benutzerverwaltung" {
     database "Datenbank" as db2
-    [Konroverwaltung] <-down-> db2 : Datenfluss
+    [Kontoverwaltung] <-down-> db2 : Datenfluss
     [Passwortverwaltung] <-down-> db2 : Datenfluss
     [Richtlinienverwaltung] <-down-> db2 : Datenfluss
     [Rechteverwaltung] <-down-> db2 : Datenfluss
@@ -184,7 +184,7 @@ package "Microservices" {
 
   [Ressourcen überwachen]  -down- "API-Gateway" 
   [Benachrichtigungen senden] -down- "API-Gateway"
-  [Konroverwaltung] -down- "API-Gateway"
+  [Kontoverwaltung] -down- "API-Gateway"
   [Passwortverwaltung] -down- "API-Gateway"
   [Richtlinienverwaltung] -down- "API-Gateway"
   [Rechteverwaltung] -down- "API-Gateway"
@@ -306,12 +306,8 @@ node "Abteilungsanalyse" {
  node "Datenanfrage Krankenkasse"{
     [Patientenakteanforderung empfangen] 
     [Patientenakteanforderung versenden]
-    [Patientendaten suchen]
-    [Patientendaten verwalten]
 
     database "Database2"{
-      [Patientendaten verwalten] <-> Database2 : Datenfluss
-      [Patientendaten suchen] --> Database2 : Datenfluss
       [Patientenakteanforderung versenden] <-- Database2 : Datenfluss
     }
   }
@@ -321,21 +317,15 @@ node "Abteilungsanalyse" {
 package "API"{
   [Input (Abteilungsanalysendaten)]
   [Output (Abteilungsanalysenbericht)]
-  [Input (Patientenakte)]
-  [Output (Patientenakten)]
  }
 }
 
   [Abteilungsanalysbenricht erstellen] -down- "API-Gateway"
   [Abteilungsanalysenbericht anzeigen] -down- "API-Gateway"
   [Abteilungsanalysenbericht versenden] -down- "API-Gateway"
-  [Patientenakteanforderung empfangen] -down- "API-Gateway"
-  [Patientenakteanforderung versenden] -down- "API-Gateway"
 
   "API-Gateway" -- [Input (Abteilungsanalysendaten)]
   "API-Gateway" -- [Output (Abteilungsanalysenbericht)]
-  "API-Gateway" -- [Input (Patientenakte)]
-  "API-Gateway" -- [Output (Patientenakten)]
 @enduml
 ```
 
