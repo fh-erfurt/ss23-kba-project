@@ -401,6 +401,9 @@ package "API"{
 @startuml
 left to right direction
 
+!define coral #FF6F61
+!define teal #008080
+
 package "Microservices" {
 
 '-----------Lino-----------
@@ -616,32 +619,32 @@ node "Abteilungsanalyse" {
 "API-Gateway" -- [Output(Patientendaten)]
 
 '-----------Duong-----------
-[Abteilungsanalysbenricht erstellen] -up- "API-Gateway"
-[Abteilungsanalysenbericht anzeigen] -up- "API-Gateway"
-[Abteilungsanalysenbericht versenden] -up- "API-Gateway"
+[Abteilungsanalysbenricht erstellen] -up[#FF6F61]- "API-Gateway"
+[Abteilungsanalysenbericht anzeigen] -up[#FF6F61]- "API-Gateway"
+[Abteilungsanalysenbericht versenden] -up[#FF6F61]- "API-Gateway"
 [Patientenakteanforderung empfangen] -up- "API-Gateway"
 [Patientenakteanforderung versenden] -up- "API-Gateway"
-[Leistungsbericht erstellen] -up- "API-Gateway"
-[Leistungsanalyse anzeigen] -up- "API-Gateway"
-[Leistungsbericht versenden] -up- "API-Gateway"
-[Bett-Kapazität anzeigen] -up- "API-Gateway"
-[Auslastungsbericht erstellen] -up- "API-Gateway"
-[Auslastungsüberblick anzeigen] -up- "API-Gateway"
-[Auslastungsbericht versenden] -up- "API-Gateway"
+[Leistungsbericht erstellen] -up[#DarkOliveGreen]- "API-Gateway"
+[Leistungsanalyse anzeigen] -up[#DarkOliveGreen]- "API-Gateway"
+[Leistungsbericht versenden] -up[#DarkOliveGreen]- "API-Gateway"
+[Bett-Kapazität anzeigen] -up[#Sienna]- "API-Gateway"
+[Auslastungsbericht erstellen] -up[#Sienna]- "API-Gateway"
+[Auslastungsüberblick anzeigen] -up[#Sienna]- "API-Gateway"
+[Auslastungsbericht versenden] -up[#Sienna]- "API-Gateway"
 
-"API-Gateway" -- [Input (Abteilungsanalysendaten)]
-"API-Gateway" -- [Output (Abteilungsanalysenbericht)]
+"API-Gateway" -[#FF6F61]- [Input (Abteilungsanalysendaten)]
+"API-Gateway" -[#FF6F61]- [Output (Abteilungsanalysenbericht)]
 "API-Gateway" -- [Input (Patientenakte)]
 "API-Gateway" -- [Output (Patientenakten)]
-"API-Gateway" -- [Input (Leistungsdaten)]
-"API-Gateway" -- [Output (Leistungsbericht)]
-"API-Gateway" -- [Input (Auslastungsdaten)]
-"API-Gateway" -- [Output (Auslastungsbericht)]
+"API-Gateway" -[#DarkOliveGreen]- [Input (Leistungsdaten)]
+"API-Gateway" -[#DarkOliveGreen]- [Output (Leistungsbericht)]
+"API-Gateway" -[#Sienna]- [Input (Auslastungsdaten)]
+"API-Gateway" -[#Sienna]- [Output (Auslastungsbericht)]
 
 '-----------Jann-----------
 
-[Ressourcen überwachen]  -up- "API-Gateway" 
-[Benachrichtigungen senden] -up- "API-Gateway"
+[Ressourcen überwachen]  -up[#Darkorange]- "API-Gateway" 
+[Benachrichtigungen senden] -up[#Darkorange]- "API-Gateway"
 [Kontoverwaltung] -up- "API-Gateway"
 [Passwortverwaltung] -up- "API-Gateway"
 [Richtlinienverwaltung] -up- "API-Gateway"
@@ -649,8 +652,8 @@ node "Abteilungsanalyse" {
 [Konfigurationsdaten bearbeiten] -up- "API-Gateway"
 [Dokumente bearbeiten] -up- "API-Gateway"
 
-"API-Gateway" -- [Input(Systemüberwachung)]
-"API-Gateway" -- [Output(Systemüberwachung)]
+"API-Gateway" -[#Darkorange]- [Input(Systemüberwachung)]
+"API-Gateway" -[#Darkorange]- [Output(Systemüberwachung)]
 "API-Gateway" -- [Input(Benutzerverwaltung)]
 "API-Gateway" -- [Output(Benutzerverwaltung)]
 "API-Gateway" -- [Input(Konfigurationsdatenverwaltung)]
@@ -661,16 +664,16 @@ node "Abteilungsanalyse" {
 '----------------------
 "Patienten" <|.. Datenbank2
 
-"Datenanfrage Krankenkasse" <|.. Datenbank6
+"Datenanfrage Krankenkasse" <|.[#8A2BE2]. Datenbank6
 
-"Auslastungsanalyse" <|.. Datenbank4
-"Auslastungsanalyse" <|.. Datenbank1
+"Auslastungsanalyse" <|.[#Sienna]. Datenbank4
+"Auslastungsanalyse" <|.[#Sienna]. Datenbank1
 
-"Systemüberwachung" <|.. Datenbank3
+"Systemüberwachung" <|.[#Darkorange]. Datenbank3
 
-"Leistungsüberprüfung" <|.. Datenbank10
+"Leistungsüberprüfung" <|.[#DarkOliveGreen]. Datenbank10
 
-"Abteilungsanalyse" <|.. Datenbank10
+"Abteilungsanalyse" <|.[#FF6F61]. Datenbank10: Assoziation in Coral
 
 @enduml
 ```
