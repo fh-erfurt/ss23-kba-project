@@ -59,4 +59,12 @@ export interface UserService {
    * @returns       The updated user instance
    */
   persistTokens: (id: string, tokens: string[]) => Promise<User>;
+
+  /**
+   * Increments the hmac counter of the user after sign in attempt.
+   *
+   * @param id      The unique identifier of the user
+   * @returns       The updated user instance
+   */
+  incrementHmacCounter: (id: string) => Promise<User>;
 }

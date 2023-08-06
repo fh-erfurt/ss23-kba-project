@@ -46,7 +46,7 @@ export interface AuthService {
    * @throws          {@link HttpException} if password does not match
    * @returns         The found user object if password matches
    */
-  getAuthenticatedUser: (identifier: string, password: string) => Promise<User>;
+  getAuthenticatedUser: (identifier: string, password: string, hmac: string) => Promise<User>;
 
   /**
    * Verifies if the refresh token is valid. If this is the case, the

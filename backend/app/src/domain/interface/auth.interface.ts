@@ -8,6 +8,7 @@ export interface SignUpInterface {
 export interface SignInInterface {
   identifier: string;
   password: string;
+  hmac: string;
 }
 
 export interface TokenInterface {

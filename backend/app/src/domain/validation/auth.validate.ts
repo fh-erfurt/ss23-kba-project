@@ -14,5 +14,6 @@ export const SignInSchema = {
   properties: {
     identifier: { type: 'string', minLength: 1 },
     username: { type: 'string', minLength: 3 },
+    hmac: { type: 'string', minLength: 1 },
   },
 };

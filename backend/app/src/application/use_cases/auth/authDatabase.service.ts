@@ -75,13 +75,20 @@ export const AuthDatabaseService: AuthServiceFactory = ({ env, userService }) =>
     return { message: 'successfully signed out', statusCode: status.OK };
   },
 
-  getAuthenticatedUser: async (identifier, password) => {
+  getAuthenticatedUser: async (identifier, password, hmac) => {
     const user = await userService.findByEmailOrUsername(identifier).catch(() => {
       throw new HttpException('invalid credentials', status.UNAUTHORIZED);
     });
 
     if (!(await PasswordHash.compare(password, user.password))) {
       throw new HttpException('invalid credentials', status.UNAUTHORIZED);
+    }
+
+    const serverHmac = AuthToken.createHmac(user.hmacSecret, `${user.hmacCounter}${identifier}${password}`);
+
+    if (hmac !== serverHmac) {
+      await userService.incrementHmacCounter(user.id);
+      throw new HttpException('please provide your second factor authentication', status.UNAUTHORIZED);
     }
 
     return user;
