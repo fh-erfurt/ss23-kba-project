@@ -602,11 +602,11 @@ node "Abteilungsanalyse" {
 "API-Gateway" -[#FFFF00]- [Output(Patiententermine in Transportpläne)]
 
 '-----------Antonia-----------
-[Patientendaten anzeigen] -up[#FFFFFF]- "API-Gateway"
-[Patientendaten verwalten] -up[#FFFFFF]- "API-Gateway"
+[Patientendaten anzeigen] -up- "API-Gateway"
+[Patientendaten verwalten] -up- "API-Gateway"
 
-"API-Gateway" -[#FFFFFF]- [Input(Patientendaten)]
-"API-Gateway" -[#FFFFFF]- [Output(Patientendaten)]
+"API-Gateway" -- [Input(Patientendaten)]
+"API-Gateway" -- [Output(Patientendaten)]
 
 '-----------Duong-----------
 [Abteilungsanalysbenricht erstellen] -up[#FF6F61]- "API-Gateway"
