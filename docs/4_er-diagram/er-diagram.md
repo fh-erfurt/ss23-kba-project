@@ -272,18 +272,21 @@ entity "Person" as person {
 entity "Intern_Arzt" as intern_arzt {
     Intern_Arzt_ID
     Person_ID
+    Abteilung_ID
   + Fachgebiet
 }
 
 entity "Extern_Arzt" as extern_arzt {
     Extern_Arzt_ID
     Person_ID
+    Abteilung_ID
     Fachgebiet
 }
 
 entity "Technikpersonal" as technikpersonal {
     Technikpersonal_ID
     Person_ID
+    Abteilung_ID
     Geräte_ID
     Fachgebiet
     Qualifikationen
@@ -292,12 +295,14 @@ entity "Technikpersonal" as technikpersonal {
 entity "Laborpersonal" as laborpersonal {
     Laborpersonal_ID
     Person_ID
+    Abteilung_ID
   + Fachgebiet
 }
 
 entity "Pflegepersonal" as pflegepersonal {
     Pflegepersonal_ID
     Person_ID
+    Abteilung_ID
   + Fachgebiet
 }
 
@@ -337,8 +342,9 @@ entity "Abteilung" as abteilung {
     Beschreibung
     Mitarbeiteranzahl
   + Spezialgebiet
-    Öffnungszeiten
     Ausstattung
+    Öffnungszeiten
+    Telefonnummer
     Extern/Intern
 }
 
@@ -449,7 +455,12 @@ person ||--o| technikpersonal
 person ||--o| laborpersonal
 person ||--o| pflegepersonal
 person }|--|| adresse
-person }|--|| abteilung
+
+abteilung ||--o{ extern_arzt
+abteilung ||--|{ intern_arzt
+abteilung ||--|{ laborpersonal
+abteilung ||--|{ technikpersonal
+abteilung ||--|{ pflegepersonal
 
 krankenbett ||--o| patient 
 krankenbett }|--|| abteilung
