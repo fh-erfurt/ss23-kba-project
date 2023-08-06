@@ -55,8 +55,10 @@ Für eine Microservice-Architektur gibt es verschiedene Backend-Frameworks, die 
 
 - Ruby on Rails (Ruby): Ruby on Rails ist ein beliebtes Backend-Framework für die Ruby-Programmiersprache. Es bietet eine konventionenbasierte Entwicklungsumgebung und ermöglicht eine schnelle Entwicklung von Microservices. Ruby on Rails unterstützt auch eine Vielzahl von Bibliotheken und bietet eine gute Unterstützung für die Integration von Datenbanken.
 
+- Django (Python): Django ist ein leistungsfähiges und vielseitiges Webframework. Es zielt darauf ab, die Entwicklung von Webanwendungen zu vereinfachen, indem es eine solide Grundlage für das Datenbankmanagement, die URL-Routing, das Templating und vieles mehr bietet. Obwohl es ursprünglich als monolithisches Webframework entwickelt wurde, kann Django durch die Verwendung von RESTful APIs, die Einhaltung der Prinzipien von Microservices und die Aufteilung der Funktionalität in separate Apps den Aufbau und die Verwaltung von Microservices unterstützen.
+
 **Deployment**
 
-Da es sich um sensible Patientendaten handelt, muss hier besonders Acht auf Datenschutz gelegt werden. Ein Dpeloyment auf den gängigen Cloud-Plattformen wie AWS, Microsoft Azure oder Google Cloud kommen demnach nicht in Frage. Andere Dienstleister wie IONOS Cloud besitzen DSGVO Zertifizierungen und kommen somit eher in Frage.
+Da es sich um sensible Patientendaten handelt, muss hier besonders Acht auf Datenschutz gelegt werden. Ein Deployment auf den gängigen Cloud-Plattformen wie AWS, Microsoft Azure oder Google Cloud kommen demnach nicht in Frage. Andere Dienstleister wie IONOS Cloud besitzen DSGVO Zertifizierungen und kommen somit eher in Frage.
 
 Da die vorherige Frage schwer zu beantworten ist und sich die Entscheidung bis zum Release ändern kann, muss dafür gesorgt werden, dass das System in jede Architektur eingepflegt werden kann. Alle Dienste werden somit isoliert unter Verwendung von Container-Technologien wie Docker bereitgestellt. Für die Orchestrierung der Container können Tools wie Kubernetes benutzt werden, um eine skalierbare und zuverlässige Infrastruktur bereitzustellen. Diese kann sowohl auf gängigen Cloud Plattformen, als auch in ein eigenes Servernetzwerk integriert werden.
