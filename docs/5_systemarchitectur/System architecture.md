@@ -1,4 +1,4 @@
-# Systemarchitectur
+# System architecture
 
 ** Welche Systemarchitektur stehen zur Auswahl?**
 
