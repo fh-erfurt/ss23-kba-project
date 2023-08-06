@@ -412,8 +412,8 @@ package "Microservices" {
     [Auftrag ansehen]
 
     database "Datenbank1"{
-      [Auftrag ansehen] <-- Datenbank1 : Datenfluss
-      [Auftrag bearbeiten] <-> Datenbank1: Datenfluss
+      [Auftrag ansehen] <-[#607B8B]- Datenbank1 : Datenfluss
+      [Auftrag bearbeiten] <-[#607B8B]> Datenbank1: Datenfluss
     }
   }
 
@@ -422,8 +422,8 @@ package "Microservices" {
     [Untersuchungseinstellungen verwalten]
 
     database "Datenbank2"{
-      [Untersuchungsergebnisse anzeigen] <-- Datenbank2 : Datenfluss
-      [Untersuchungseinstellungen verwalten] <-> Datenbank2 : Datenfluss
+      [Untersuchungsergebnisse anzeigen] <-[#8470FF]- Datenbank2 : Datenfluss
+      [Untersuchungseinstellungen verwalten] <-[#8470FF]-> Datenbank2 : Datenfluss
     }
   }
 
@@ -433,9 +433,9 @@ package "Microservices" {
     [Fehlerbericht an externe Systemtechniker senden]
 
     database "Datenbank3"{
-      [Fehlerbericht anzeigen] <-- Datenbank3 : Datenfluss
-      [Fehlerbericht an externe Systemtechniker senden] <-- Datenbank3 : Datenfluss
-      [Fehlerbericht verwalten] <-> Datenbank3 : Datenfluss
+      [Fehlerbericht anzeigen] <-[#00CED1]- Datenbank3 : Datenfluss
+      [Fehlerbericht an externe Systemtechniker senden] <-[#00CED1]- Datenbank3 : Datenfluss
+      [Fehlerbericht verwalten] <-[#00CED1]-> Datenbank3 : Datenfluss
     }
   }
 
@@ -444,8 +444,8 @@ package "Microservices" {
     [Termine als erledigt markieren]
     [Termine einsehen]
     database "Datenbank4"{
-      [Termine einsehen] <-- Datenbank4 : Datenfluss
-      [Termine als erledigt markieren] <--> Datenbank4 : Datenfluss
+      [Termine einsehen] -[#0000FF]- Datenbank4 : Datenfluss
+      [Termine als erledigt markieren] <-[#0000FF]-> Datenbank4 : Datenfluss
     }
   }
 
@@ -453,8 +453,8 @@ package "Microservices" {
     [Patiententermine in Transportpläne eintragen]
     [Patiententermine bearbeiten/löschen]
     database "Datenbank5"{
-      [Patiententermine in Transportpläne eintragen] --> Datenbank5 : Datenfluss
-      [Patiententermine bearbeiten/löschen] <--> Datenbank5 : Datenfluss
+      [Patiententermine in Transportpläne eintragen] -[#FFFF00]-> Datenbank5 : Datenfluss
+      [Patiententermine bearbeiten/löschen] <-[#FFFF00]-> Datenbank5 : Datenfluss
     }
   }
 
@@ -476,9 +476,9 @@ node "Abteilungsanalyse" {
     [Abteilungsanalysenbericht versenden] 
    
     database "Datenbank7"{
-      [Abteilungsanalysenbericht anzeigen] <-- Datenbank7 : Datenfluss
-      [Abteilungsanalysbenricht erstellen] --> Datenbank7 : Datenfluss
-      [Abteilungsanalysenbericht versenden] <-- Datenbank7 : Datenfluss
+      [Abteilungsanalysenbericht anzeigen] <-[#FF6F61]- Datenbank7 : Datenfluss
+      [Abteilungsanalysbenricht erstellen] -[#FF6F61]-> Datenbank7 : Datenfluss
+      [Abteilungsanalysenbericht versenden] <-[#FF6F61]- Datenbank7 : Datenfluss
     }
   }
 
@@ -487,8 +487,8 @@ node "Abteilungsanalyse" {
     [Patientenakteanforderung versenden]
 
     database "Datenbank8"{
-      [Patientenakteanforderung versenden] <-- Datenbank8 : Datenfluss
-      [Patientenakteanforderung empfangen] --> Datenbank8 : Datenfluss
+      [Patientenakteanforderung versenden] <-[#8A2BE2]- Datenbank8 : Datenfluss
+      [Patientenakteanforderung empfangen] -[#8A2BE2]-> Datenbank8 : Datenfluss
     }
   }
    node "Leistungsüberprüfung" {
@@ -497,9 +497,9 @@ node "Abteilungsanalyse" {
     [Leistungsbericht versenden] 
 
     database "Datenbank9"{
-      [Leistungsbericht erstellen] --> Datenbank9 : Datenfluss
-      [Leistungsanalyse anzeigen] <-- Datenbank9 : Datenfluss
-      [Leistungsbericht versenden] <-- Datenbank9 : Datenfluss
+      [Leistungsbericht erstellen] -[#DarkOliveGreen]-> Datenbank9 : Datenfluss
+      [Leistungsanalyse anzeigen] <-[#DarkOliveGreen]- Datenbank9 : Datenfluss
+      [Leistungsbericht versenden] <-[#DarkOliveGreen]- Datenbank9 : Datenfluss
     }
   }
 
@@ -510,34 +510,34 @@ node "Abteilungsanalyse" {
     [Bett-Kapazität anzeigen] 
 
     database "Datenbank10"{
-      [Auslastungsüberblick anzeigen] <-- Datenbank10 : Datenfluss 
-      [Auslastungsbericht erstellen] --> Datenbank10 : Datenfluss
-      [Bett-Kapazität anzeigen] <-- Datenbank10 : Datenfluss
-      [Auslastungsbericht versenden] <-- Datenbank10 : Datenfluss
+      [Auslastungsüberblick anzeigen] <-[#FF1493]- Datenbank10 : Datenfluss 
+      [Auslastungsbericht erstellen] -[#FF1493]-> Datenbank10 : Datenfluss
+      [Bett-Kapazität anzeigen] <-[#FF1493]- Datenbank10 : Datenfluss
+      [Auslastungsbericht versenden] <-[#FF1493]- Datenbank10 : Datenfluss
     }
   }
 '-----------Jann-----------
   node "Systemüberwachung" {
     database "Datenbank11" as db11
-    [Ressourcen überwachen] <-down- db11 : Datenfluss
-    [Benachrichtigungen senden] <-down- db11 : Datenfluss
+    [Ressourcen überwachen] <-down[#Darkorange]- db11 : Datenfluss
+    [Benachrichtigungen senden] <-down[#Darkorange]- db11 : Datenfluss
   }
   node "Benutzerverwaltung" {
     database "Datenbank12" as db12
-    [Kontoverwaltung] <-down-> db12 : Datenfluss
-    [Passwortverwaltung] <-down-> db12 : Datenfluss
-    [Richtlinienverwaltung] <-down-> db12 : Datenfluss
-    [Rechteverwaltung] <-down-> db12 : Datenfluss
+    [Kontoverwaltung] <-down[#97FFFF]-> db12 : Datenfluss
+    [Passwortverwaltung] <-down[#97FFFF]-> db12 : Datenfluss
+    [Richtlinienverwaltung] <-down[#97FFFF]-> db12 : Datenfluss
+    [Rechteverwaltung] <-down[#97FFFF]-> db12 : Datenfluss
   }
   node "Konfigurationsdatenverwaltung" {
     database "Datenbank13" as db13
-    [Konfigurationsdaten bearbeiten] <-down-> db13 : Datenfluss
-    [Konfigurationsdaten einsehen] <-down- db13 : Datenfluss
+    [Konfigurationsdaten bearbeiten] <-down[#FFF68F]-> db13 : Datenfluss
+    [Konfigurationsdaten einsehen] <-down[#FFF68F]- db13 : Datenfluss
   }
   node "Dokumentationsverwaltung" {
     database "Datenbank14" as db14
-    [Dokumente bearbeiten] <-down-> db14 : Datenfluss
-    [Dokumente einsehen]  <-down- db14 : Datenfluss
+    [Dokumente bearbeiten] <-down[#7CFC00]-> db14 : Datenfluss
+    [Dokumente einsehen]  <-down[#7CFC00]- db14 : Datenfluss
   }
 
 
@@ -585,57 +585,57 @@ node "Abteilungsanalyse" {
 }
 
 '-----------Lino-----------
-[Untersuchungsergebnisse anzeigen] -up- "API-Gateway"
-[Untersuchungseinstellungen verwalten] -up- "API-Gateway"
-[Fehlerbericht anzeigen] -up- "API-Gateway"
-[Fehlerbericht verwalten] -up- "API-Gateway"
-[Fehlerbericht an externe Systemtechniker senden] -up- "API-Gateway"
-[Auftrag bearbeiten] -up- "API-Gateway"
-[Auftrag ansehen] -up- "API-Gateway"
+[Untersuchungsergebnisse anzeigen] -up[#8470FF]- "API-Gateway"
+[Untersuchungseinstellungen verwalten] -up[#8470FF]- "API-Gateway"
+[Fehlerbericht anzeigen] -up[#00CED1]- "API-Gateway"
+[Fehlerbericht verwalten] -up[#00CED1]- "API-Gateway"
+[Fehlerbericht an externe Systemtechniker senden] -up[#00CED1]- "API-Gateway"
+[Auftrag bearbeiten] -up[#607B8B]- "API-Gateway"
+[Auftrag ansehen] -up[#607B8B]- "API-Gateway"
 
-"API-Gateway" -- [Input(medizinisches Gerät)]
-"API-Gateway" -- [Output(medizinisches Gerät)]
-"API-Gateway" -- [Output(Fehlerbericht)]
-"API-Gateway" -- [Input(Fehlerbericht)]
-"API-Gateway" -- [Output(Laborergebnis)]
-"API-Gateway" -- [Input(Backlogauftrag)]
+"API-Gateway" -[#8470FF]- [Input(medizinisches Gerät)]
+"API-Gateway" -[#8470FF]- [Output(medizinisches Gerät)]
+"API-Gateway" -[#00CED1]- [Output(Fehlerbericht)]
+"API-Gateway" -[#00CED1]- [Input(Fehlerbericht)]
+"API-Gateway" -[#607B8B]- [Output(Laborergebnis)]
+"API-Gateway" -[#607B8B]- [Input(Backlogauftrag)]
 
 '-----------Helen-----------
-[Termine einsehen] -up- "API-Gateway"
-[Termine als erledigt markieren] -up- "API-Gateway"
-[Patiententermine in Transportpläne eintragen] -up- "API-Gateway"
-[Patiententermine bearbeiten/löschen] -up- "API-Gateway"
+[Termine einsehen] -up[#0000FF]- "API-Gateway"
+[Termine als erledigt markieren] -up[#0000FF]- "API-Gateway"
+[Patiententermine in Transportpläne eintragen] -up[#FFFF00]- "API-Gateway"
+[Patiententermine bearbeiten/löschen] -up[#FFFF00]- "API-Gateway"
 
-"API-Gateway" -- [Input(Patiententermine in Transportpläne)]
-"API-Gateway" -- [Input(Termine)]
-"API-Gateway" -- [Output(Termine)]
-"API-Gateway" -- [Output(Patiententermine in Transportpläne)]
+"API-Gateway" -[#FFFF00]- [Input(Patiententermine in Transportpläne)]
+"API-Gateway" -[#0000FF]- [Input(Termine)]
+"API-Gateway" -[#0000FF]- [Output(Termine)]
+"API-Gateway" -[#FFFF00]- [Output(Patiententermine in Transportpläne)]
 
 '-----------Antonia-----------
-[Patientendaten anzeigen] -up- "API-Gateway"
-[Patientendaten verwalten] -up- "API-Gateway"
+[Patientendaten anzeigen] -up[#FFFFFF]- "API-Gateway"
+[Patientendaten verwalten] -up[#FFFFFF]- "API-Gateway"
 
-"API-Gateway" -- [Input(Patientendaten)]
-"API-Gateway" -- [Output(Patientendaten)]
+"API-Gateway" -[#FFFFFF]- [Input(Patientendaten)]
+"API-Gateway" -[#FFFFFF]- [Output(Patientendaten)]
 
 '-----------Duong-----------
 [Abteilungsanalysbenricht erstellen] -up[#FF6F61]- "API-Gateway"
 [Abteilungsanalysenbericht anzeigen] -up[#FF6F61]- "API-Gateway"
 [Abteilungsanalysenbericht versenden] -up[#FF6F61]- "API-Gateway"
-[Patientenakteanforderung empfangen] -up- "API-Gateway"
-[Patientenakteanforderung versenden] -up- "API-Gateway"
+[Patientenakteanforderung empfangen] -up[#8A2BE2]- "API-Gateway"
+[Patientenakteanforderung versenden] -up[#8A2BE2]- "API-Gateway"
 [Leistungsbericht erstellen] -up[#DarkOliveGreen]- "API-Gateway"
 [Leistungsanalyse anzeigen] -up[#DarkOliveGreen]- "API-Gateway"
 [Leistungsbericht versenden] -up[#DarkOliveGreen]- "API-Gateway"
-[Bett-Kapazität anzeigen] -up[#Sienna]- "API-Gateway"
-[Auslastungsbericht erstellen] -up[#Sienna]- "API-Gateway"
-[Auslastungsüberblick anzeigen] -up[#Sienna]- "API-Gateway"
-[Auslastungsbericht versenden] -up[#Sienna]- "API-Gateway"
+[Bett-Kapazität anzeigen] -up[#FF1493]- "API-Gateway"
+[Auslastungsbericht erstellen] -up[#FF1493]- "API-Gateway"
+[Auslastungsüberblick anzeigen] -up[#FF1493]- "API-Gateway"
+[Auslastungsbericht versenden] -up[#FF1493]- "API-Gateway"
 
 "API-Gateway" -[#FF6F61]- [Input (Abteilungsanalysendaten)]
 "API-Gateway" -[#FF6F61]- [Output (Abteilungsanalysenbericht)]
-"API-Gateway" -- [Input (Patientenakte)]
-"API-Gateway" -- [Output (Patientenakten)]
+"API-Gateway" -[#8A2BE2]- [Input (Patientenakte)]
+"API-Gateway" -[#8A2BE2]- [Output (Patientenakten)]
 "API-Gateway" -[#DarkOliveGreen]- [Input (Leistungsdaten)]
 "API-Gateway" -[#DarkOliveGreen]- [Output (Leistungsbericht)]
 "API-Gateway" -[#Sienna]- [Input (Auslastungsdaten)]
@@ -645,35 +645,35 @@ node "Abteilungsanalyse" {
 
 [Ressourcen überwachen]  -up[#Darkorange]- "API-Gateway" 
 [Benachrichtigungen senden] -up[#Darkorange]- "API-Gateway"
-[Kontoverwaltung] -up- "API-Gateway"
-[Passwortverwaltung] -up- "API-Gateway"
-[Richtlinienverwaltung] -up- "API-Gateway"
-[Rechteverwaltung] -up- "API-Gateway"
-[Konfigurationsdaten bearbeiten] -up- "API-Gateway"
-[Dokumente bearbeiten] -up- "API-Gateway"
+[Kontoverwaltung] -up[#97FFFF]- "API-Gateway"
+[Passwortverwaltung] -up[#97FFFF]- "API-Gateway"
+[Richtlinienverwaltung] -up[#97FFFF]- "API-Gateway"
+[Rechteverwaltung] -up[#97FFFF]- "API-Gateway"
+[Konfigurationsdaten bearbeiten] -up[#FFF68F]- "API-Gateway"
+[Dokumente bearbeiten] -up[#7CFC00]- "API-Gateway"
 
 "API-Gateway" -[#Darkorange]- [Input(Systemüberwachung)]
 "API-Gateway" -[#Darkorange]- [Output(Systemüberwachung)]
-"API-Gateway" -- [Input(Benutzerverwaltung)]
-"API-Gateway" -- [Output(Benutzerverwaltung)]
-"API-Gateway" -- [Input(Konfigurationsdatenverwaltung)]
-"API-Gateway" -- [Output(Konfigurationsdatenverwaltung)]
-"API-Gateway" -- [Input(Dokumentationsverwaltung)]
-"API-Gateway" -- [Output(Dokumentationsverwaltung)]
+"API-Gateway" -[#97FFFF]- [Input(Benutzerverwaltung)]
+"API-Gateway" -[#97FFFF]- [Output(Benutzerverwaltung)]
+"API-Gateway" -[#FFF68F]- [Input(Konfigurationsdatenverwaltung)]
+"API-Gateway" -[#FFF68F]- [Output(Konfigurationsdatenverwaltung)]
+"API-Gateway" -[#7CFC00]- [Input(Dokumentationsverwaltung)]
+"API-Gateway" -[#7CFC00]- [Output(Dokumentationsverwaltung)]
 
 '----------------------
-"Patienten" <|.. Datenbank2
+"Patienten" <|.[#FFFFFF]. Datenbank2
 
 "Datenanfrage Krankenkasse" <|.[#8A2BE2]. Datenbank6
 
-"Auslastungsanalyse" <|.[#Sienna]. Datenbank4
-"Auslastungsanalyse" <|.[#Sienna]. Datenbank1
+"Auslastungsanalyse" <|.[#FF1493]. Datenbank4
+"Auslastungsanalyse" <|.[#FF1493]. Datenbank1
 
 "Systemüberwachung" <|.[#Darkorange]. Datenbank3
 
 "Leistungsüberprüfung" <|.[#DarkOliveGreen]. Datenbank10
 
-"Abteilungsanalyse" <|.[#FF6F61]. Datenbank10: Assoziation in Coral
+"Abteilungsanalyse" <|.[#FF6F61]. Datenbank10
 
 @enduml
 ```
